@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <canvas id="download-area" width="500" height="200"></canvas>
     <div class="back-button" v-on:click="previousQuote">
       <IconButton name="back"/>
     </div>
     <div class="middle-section">
       <div>
-        <span class="quote" v-html="quotes[currentQuote].split('-')[0]" />
-        <br />
-        <span class="author" v-html="quotes[currentQuote].split('-')[1]" />
-      </div>
-      <div v-on:click="download" class="download-button">
-        <IconButton name="download"/>
+        <div class="quote-area">
+          <span class="quote" v-html="quotes[currentQuote].split('-')[0]" />
+          <br />
+          <span class="author" v-html="quotes[currentQuote].split('-')[1]" />
+        </div>
+        <div v-on:click="download" class="download-button">
+          <IconButton name="download"/>
+        </div>
       </div>
     </div>
     <div class="forward-button" v-on:click="nextQuote">
@@ -107,6 +108,8 @@ export default {
 <style lang="scss">
 @import '~vue-ionicons/ionicons.scss';
 
+$break-small: 800px;
+
 html, body {
   margin: 0;
   padding: 0;
@@ -122,9 +125,13 @@ html, body {
   color: #2c3e50;
   user-select: none;
   display: grid;
-  grid-template-columns: 3;
-  grid-template-rows: 1;
   height: 100%;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  @media screen and (max-width: $break-small) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 25% 50% 25%;
+  }
 
   #download-area {
     position: absolute;
@@ -132,25 +139,37 @@ html, body {
   }
 
   & > div {
+    position: relative;
     height: 100%;
   }
 
   & > div > div {
-    transform: translateY(-50%);
-    margin-top: 50vh;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
   }
 
   .back-button {
-    grid-column: 1;
-    padding-left: 20px;
+    @media screen and (min-width: $break-small) {
+      padding-left: 20px;
+    }
   }
 
   .middle-section {
-    grid-column: 2;
 
-    .quote {
-      font-size: 35px;
-      font-weight: bold
+    & > div {
+      width: 100%;
+    }
+
+    .quote-area {
+      width: 90%;
+      margin: auto;
+
+      .quote {
+        font-size: 35px;
+        font-weight: bold
+      }
     }
 
     .author {
@@ -162,17 +181,21 @@ html, body {
     }
 
     .download-button {
-      position: absolute;
-      margin: 0;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%)
+      @media screen and (min-width: $break-small) {
+        position: absolute;
+        margin: 0;
+        top: 100%;
+        margin-top: 50px;
+        left: 50%;
+        transform: translateX(-50%)
+      }
     }
   }
 
   .forward-button {
-    grid-column: 3;
-    padding-right: 20px;
+    @media screen and (min-width: $break-small) {
+      padding-right: 20px;
+    }
   }
 }
 </style>

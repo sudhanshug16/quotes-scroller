@@ -32,7 +32,7 @@ export default {
     
     &:hover {
       padding: 20px;
-      margin: 10px;
+      margin: 0px;
       background: #f0f0f0;
     }
 

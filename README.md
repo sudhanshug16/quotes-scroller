@@ -1,5 +1,8 @@
 # quotes-scroller
 
+An app built using Vue.js to view and download quotes.
+In order to change the quotes, please update the App.vue's `quotes` variable.
+
 ## Project setup
 ```
 yarn install
@@ -19,6 +22,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -1,7 +1,7 @@
 # quotes-scroller
 
 An app built using Vue.js to view and download quotes.
-In order to change the quotes, please update the App.vue's `quotes` variable.
+In order to change the quotes, please update the `App.vue`'s `quotes` in `data()` part of the component.
 
 ## Project setup
 ```
